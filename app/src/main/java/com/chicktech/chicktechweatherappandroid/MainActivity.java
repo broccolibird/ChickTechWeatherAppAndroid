@@ -94,9 +94,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void populateDate(CurrentWeather currentWeather) {
         mIconImageView.setImageResource(currentWeather.getIconResId());
-        mTemperatureTextView.setText("" + currentWeather.getTemperature());
-        mHumidityTextView.setText("" + currentWeather.getHumidity());
-        mPrecipitationTextView.setText("" + currentWeather.getPrecipChance());
+        mTemperatureTextView.setText(currentWeather.getFormattedTemperature());
+        mHumidityTextView.setText(currentWeather.getFormattedHumidity());
+        mPrecipitationTextView.setText(currentWeather.getFormattedPrecipChance());
         mSummaryTextView.setText(currentWeather.getSummary());
     }
 }
