@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -44,7 +45,20 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                Log.d(TAG, "onResponse: " + response.body().string());
+
+                String body = response.body().string();
+
+                Log.d(TAG, "onResponse: " + body);
+
+                if (response.isSuccessful()) {
+                    try {
+                        JSONObject json = new JSONObject(body);
+                        CurrentWeather currentWeather = new CurrentWeather(json);
+
+                    } catch (JSONException e) {
+                        Log.e(TAG, "error parsing weather data", e);
+                    }
+                }
             }
         });
 
